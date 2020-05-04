@@ -1,0 +1,401 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
+}
+p{
+    margin: 0;
+    padding: 0;
+}
+.checkout-main{
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+.checkout-main-right{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 35%;
+    min-width: 25%;
+    min-height: fit-content;
+    height: fit-content;
+    max-height: fit-content;
+    padding: 3rem 2rem 2rem 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0px 7px 11px 10px #dedede;
+}
+.checkout-main-right > p:nth-child(1){
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+.checkout-main-text{
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.checkout-main-text > p{
+    margin: 1rem 0rem;
+}
+.checkout-order-line{
+    margin: 3rem 0rem;
+    border: 1px solid #c3c4c5;
+}
+.checkout-order-total{
+    display: flex;
+    justify-content: space-between;
+}
+.checkout-order-total > p:nth-child(1){
+    font-size: 1.3rem;
+}
+.checkout-order-total > p:nth-child(2){
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #129347;
+}
+.checkout-main-left{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    /* box-shadow: -3px 11px 11px 3px #d0c2c2; */
+}
+.checkout-main-left > p {
+    padding: 1rem;
+    background-color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    box-shadow: 0px 7px 11px 10px #dedede;
+}
+.checkout-billing{
+    padding: 2rem 2rem 2rem 2rem;
+    display: flex;
+    border-radius: 0.3rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    background-color: white;
+    box-shadow: 0px 7px 11px 10px #dedede;
+}
+.checkout-billing > p{
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-bottom: 1px solid #313131;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.billing-row{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+.billing-input{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    /* border: 1px solid red; */
+}
+.billing-input > label{
+    margin-bottom: 1.5rem;
+}
+.billing-input > input{
+    padding: 1rem;
+    border: 1px solid gray;
+}
+.billing-input > input[type=email], #billingPhoneNumber{
+    background-color: transparent;
+    border: none;
+}
+.billing-textarea{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.billing-textarea > label{
+    margin-bottom: 1.5rem;
+}
+.billingSubmit{
+    display: flex;
+    justify-content: center;
+}
+#billingSubmit{
+    align-self: center;
+    background-color: green;
+    width: 100%;
+    padding: 1rem 0rem;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.checkout-delivery{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem 2rem 2rem 2rem;
+    margin-bottom: 3rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 7px 11px 10px #dedede;
+}
+.checkout-delivery > p:nth-child(1){
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1rem;
+}
+.checkout-delivery > p:nth-child(2){
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+.door-delivery {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #313131;
+    max-height: 400px;
+    overflow-y: hidden;
+    transition: all 0.5s ease-in;
+}
+.checkout-delivery-radio{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.checkout-delivery-radio > input{
+    margin-right: 2rem;
+    align-self: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #129347;
+}
+.checkout-delivery-radio > p{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.door-delivery > p:nth-child(2){
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+.door-delivery > p:nth-child(2) > span{
+    color: #129347;
+    font-weight: 600;
+}
+.dd-delivery-item-list {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0px 7px 11px 10px #dedede;
+    border-radius: 0.3rem;
+    padding: 1.5rem 3rem;
+    overflow-y: auto;
+}
+.dd-delivery-item-list > p {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1.3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #313131;
+}
+.billing-shipment{
+    display: flex;
+    flex-direction: column;
+    /* min-height: 250px; */
+}
+.billing-shipment-row{
+    display: flex;
+    border-bottom: 1px solid gray;
+    justify-content: space-around;
+    padding: 1.5rem 0rem;
+}
+.billing-shipment-row > p:nth-child(1){
+    min-width: 50px;
+    text-align: center;
+}
+.dd-delivery-item-list.pickup{
+    display: flex;
+    flex-direction: column;
+    /* max-height: 0px; */
+    transition: all 0.5s ease-in;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: none;
+}
+.hide-delivery{
+    max-height: 100px;
+}
+.show-pick-up{
+    max-height: 500px !important;
+    box-shadow: 0px 7px 11px 10px #dedede !important;
+    padding: 1.5rem 2rem !important;
+}
+.pickup > p:nth-child(2){
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: fit-content;
+}
+.pickup-info{
+    display: flex;
+    justify-content: space-around;
+}
+.pickup-info-left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.dd-delivery-item-list.pickup > p:nth-child(1){
+    margin-bottom: 2rem;
+}
+.pickup-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+.pickup-container > p:nth-child(1){
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.pickup-container > p:nth-child(2){
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+.pickup-info-right{
+    width: 40%;
+    /* border: 1px solid red; */
+}
+.pickup-container > #opening{
+    margin-bottom: 1.5rem;
+}
+.pickup-opening{
+    display: flex;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    max-width: 250px;
+}
+.pickup-opening > p:nth-child(1){
+    font-size: 1rem;
+    font-weight: 600;
+}
+.pickup-opening > p:nth-child(2){
+    font-size: 1rem;
+}
+.pay{
+    align-self: center;
+    background-color: green;
+    width: 100%;
+    padding: 1rem 0rem;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+#payNowMobile{
+    display: none;
+}
+
+@media screen and (max-width:950px){
+    #payNow{
+        display: none;
+    }
+    .checkout-delivery{
+        margin-bottom: 0rem;
+    }
+    .checkout-main{
+        flex-direction: column;
+        padding: 1rem 0.5rem;
+    }
+    .checkout-main-right,
+    .checkout-main-left{
+        width: auto;
+    }
+    .checkout-main-left > p{
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .checkout-billing{
+        padding: 1rem;
+    }
+    .billing-row{
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+    .billing-input{
+        margin-bottom: 1rem;
+        width: auto;
+    }
+    .billing-input > label{
+        margin-bottom: 0.8rem;
+    }
+    .checkout-delivery{
+        padding: 1rem 0.8rem;
+    }
+    .checkout-delivery-radio{
+        margin-bottom: 1rem;
+    }
+    .door-delivery {
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: none;
+    }
+    .door-delivery > p:nth-child(2) {
+        margin-left: 0rem;
+        margin-bottom: 1rem;
+    }
+    .dd-delivery-item-list {
+        margin-left: 0rem;
+        border-radius: 0.3rem;
+        padding: 1rem 1rem;
+        box-shadow: none;
+    }
+    .dd-delivery-item-list.pickup > p:nth-child(1) {
+        margin-bottom: 1rem;
+    }
+    .pickup > p:nth-child(2) {
+        margin-left: 0.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        font-size: 1rem;
+        width: fit-content;
+    }
+    .pickup-info{
+        flex-direction: column;
+    }
+    .pickup-info-left,
+    .pickup-info-right{
+        width: auto;
+    }
+    .pickup-opening{
+        max-width: 100%;
+        justify-content: space-around;
+    }
+    .pickup-opening > p {
+        margin: 0rem;
+    }
+    .pickup-container{
+        text-align: center;
+    }
+    .checkout-main-right{
+        min-width: 100%;
+        margin-bottom: 2rem;
+    }
+    #payNowMobile{
+        display: block;
+    }
+    .checkout-order-total > p{
+        margin: 0.5rem 0rem;
+    }
+}

@@ -1,13 +1,3 @@
-// // Handle Slick Navigation
-// $(document).ready(function(){
-//     $('.home-logos').slick({
-//         slidesToShow: 5,
-//         slidesToScroll: 1,
-//         autoplay: true,
-//         autoplaySpeed: 2000,
-//         arrows:false
-//     });
-// });
 //Handle Logo Scroll
 const handleLogoScroll = () =>{
     let viewWidth = window.innerWidth
@@ -46,7 +36,12 @@ const handleLogoScroll = () =>{
 
 // On Load
 const handleHomePageLoad = () => {
+    // loader.classList.add('showLoader')
     handleLogoScroll()
+    // handleNavbarLoad
+    //     .then(user => {
+    //         // loader.classList.remove('showLoader')
+    //     })
 }
 window.addEventListener('load', handleHomePageLoad)
 

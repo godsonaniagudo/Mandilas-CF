@@ -1,6 +1,6 @@
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
 }
 p{
     margin: 0;
@@ -8,26 +8,38 @@ p{
 }
 /* Motors After Sale/ Owner Registration*/
 .motors-as-header{
-    height: 600px;
-    background-image: url(../Assets/motors-as-header.jpg);
+    height: fit-content;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705403/Assets/motors-as-header_xdiwoa.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     margin-bottom: 3rem;
     display: flex;
+    padding: 6rem 0rem;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+.motors-as-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4)
 }
 .motors-as-header > p {
-    font-size: 6.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 600;
     color: white;
     text-align: center;
+    z-index: 3;
 }
 .motors-as-form{
     display: flex;
     flex-direction: column;
-    margin: 0rem 15rem 4rem 15rem;
+    margin: 0rem 15rem 2rem 15rem;
     background-color: white;
     padding: 2rem;
     border-radius: 0.3rem;
@@ -38,16 +50,16 @@ p{
     font-weight: 600;
     display: flex;
     align-self: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .motors-as-row{
     display:flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     justify-content: space-between;
 }
 .motors-as-row > input{
     width: 40%;
-    padding: 1rem;
+    padding: 0.7rem;
 }
 .motors-as-form input{
     border: 1px solid #818181;
@@ -82,20 +94,18 @@ p{
     background-color: #129347;
     cursor: pointer;
 }
-@media screen and (max-width:1350px){
-    .motors-as-header{
+@media screen and (max-width:950px){
+    /* .motors-as-header{
         height: 500px;
-    }
-    .motors-as-header > p {
+    } */
+    /* .motors-as-header > p {
         font-size: 3.5rem;
         padding: 2rem 3rem;
-    }
-    .motors-as-form{
+    } */
+    /* .motors-as-form{
         margin: 0 2rem 4rem 2rem;
         padding: 2rem;
-    }
-}
-@media screen and (max-width:800px){
+    } */
     .motors-as-header > p {
         font-size: 2.5rem;
         padding: 2rem 0;
@@ -128,36 +138,39 @@ p{
 
 /* Spare Parts */
 .spare-parts-header{
-    height: 400px;
+    height: fit-content;
+    padding: 3rem 1rem 3rem 6rem;
     display: flex;
     flex-direction: column;
-    background-image: url(../Assets/spare-parts.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705410/Assets/spare-parts_wvegcp.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     color: white;
-    padding: 10rem 6rem ;
+    justify-content: center;
+    align-items: flex-start;
 }
 .spare-parts-header > p:first-of-type{
-    font-size: 8rem;
+    font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 4rem;
 }
 .spare-parts-header > p:last-of-type{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 400;
-    width: 900px;
-    margin-bottom: 4rem;
+    max-width: 900px;
+    margin-bottom: 2rem;
+    text-align: justify;
 }
-.spare-parts-header > button{
+.spare-parts-header > a{
     display: flex;
     color: white;
     background-color: #129347;
     width: fit-content;
     padding: 1rem 4rem;
     border-radius: 0.2rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     border: none;
+    text-decoration: none;
 }
 .spare-parts-content{
     display: flex;
@@ -216,26 +229,9 @@ p{
     font-size: 1.2rem;
     font-weight: 600;
 }
-@media screen and (max-width:1350px){
-    .spare-parts-header{
-        height: fit-content;
-        padding: 5rem 1rem ;
-        text-align: center;
-    }
-    .spare-parts-header > p:first-of-type{
-        font-size: 6rem;
-        font-weight: 600;
-    }
-    .spare-parts-header > p:last-of-type{
-        font-size: 3rem;
-        width: fit-content;
-    }
-    .spare-parts-header > button{
-        align-self: center;
-    }
-}
 @media screen and (max-width:800px){
     .spare-parts-header{
+        align-items: center;
         padding: 2rem 0.5rem;
     }
     .spare-parts-header > p:first-of-type{
@@ -251,39 +247,52 @@ p{
 
 /* Accident Recovery */
 .ar-header{
-    padding: 9rem 5rem;
-    height: 450px;
+    height: 400px;
     color: white;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(../Assets/ar-header.jpg);
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    /* padding:2rem 7rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1586163612/Assets/Accident_Recovery_Page-min_knfzty.jpg);
+}
+.ar-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4)
 }
 .ar-header > p:first-of-type{
-    font-size: 6rem;
+    font-size: 3.5rem;
     font-weight: 600;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    z-index: 10;
+    position: relative;
 }
-.ar-header > p:last-of-type{
-    font-size: 2rem;
-    font-weight: 400;
-    width: 900px;
-}
-.ar-layer-1{
-    padding: 4rem 9rem;
+.ar-layer-1 {
+    padding: 2rem 6rem;
     height: fit-content;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 .ar-layer-1 > p{
-    width: 50%;
+    text-align: justify;
+    width: auto;
     margin-bottom: 1.5rem;
 }
 .ar-layer-2{
     display: flex;
     height: fit-content;
-    margin: 0rem 5rem 2rem 5rem;
+    margin: 0rem 6rem 2rem 6rem;
     padding: 2rem 4rem;
-    background-color: #405047;
+    background-color: #002F14;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
     justify-content: space-between;
@@ -294,7 +303,7 @@ p{
     align-self: center;
 }
 .ar-layer-2-left > p{
-    font-size: 2.5rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 .ar-layer-2-right{
@@ -303,18 +312,18 @@ p{
     flex-direction: column;
 }
 .ar-layer-2-right > p:nth-child(1){
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 500;
     margin-bottom: 2rem;
 }
 .ar-layer-2-right > p:nth-child(2), .ar-layer-2-right > p:nth-child(3){
-    font-size: 5rem;
+    font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 .ar-layer-3{
     display: flex;flex-direction: column;
-    margin: 0rem 9rem 3rem 9rem;
+    margin: 0rem 6rem 4rem 6rem;
     justify-content: space-between;
 }
 .ar-layer-3-container{
@@ -334,11 +343,11 @@ p{
 }
 .ar-layer-3-medium-text{
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
 }
 .ar-layer-3-left-info{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
 }
 .ar-layer-3-left-info > p{
@@ -350,69 +359,31 @@ p{
 .ar-layer-4{
     display: flex;
     height: 500px;
-    margin: 0rem 5rem 3rem 5rem;
+    margin: 0rem 6rem 2rem 6rem;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-@media screen and (max-width:1350px){
-    .ar-header{
-        height: fit-content;
-        padding: 5rem 1rem ;
-        text-align: center;
+@media screen and (max-width:900px){
+    .ar-header {
+        height: 250px;
+        padding: 2rem 1rem;
+        text-align: justify;
     }
-    .ar-header > p:last-of-type {
-        width: 100%;
+    .ar-header > p:first-of-type {
+        text-align: center;
+        font-size: 1.5rem;
     }
     .ar-layer-1{
-        padding: 2rem 0.5rem;
-    }
-    .ar-layer-1 > p {
-        width: 100%;
-        text-align: center;
-        font-size: 2rem;
-    }
-    .ar-layer-2 {
-        margin: 0 0 2rem 0;
-        padding: 2rem 1rem;
-    }
-    .ar-layer-2-left, .ar-layer-2-right{
-        width: auto;
-    }
-    .ar-layer-3 {
-        margin: 0 0 3rem 0;
-        padding: 2rem 1rem;
-    }
-    .ar-layer-3-bold-text{
-        justify-content: center;
-        text-align: center;
-    }
-    .ar-layer-3-container{
-        flex-direction: column;
-    }
-    .ar-layer-3-left{
-        width: 100%;
-    }
-    .ar-layer-3-right{
-        width: 100%;
-    }
-    .ar-layer-4{
-        margin: 0 0 2rem 0;
-        box-shadow: none;
-    }
-}
-@media screen and (max-width:800px){
-    .ar-header > p:first-of-type {
-        font-size: 3rem;
-    }
-    .ar-header > p:last-of-type {
-        font-size: 1.5rem;
+        padding: 1rem 0.5rem;
     }
     .ar-layer-1 > p {
         font-size: 1.3rem;
+        width: auto;
     }
     .ar-layer-2{
         flex-direction: column;
-        /* text-align: center; */
+        margin: 0 0 2rem 0;
+        padding: 2rem 1rem;
     }
     .ar-layer-2-left, .ar-layer-2-right{
         text-align: center;
@@ -422,9 +393,287 @@ p{
     .ar-layer-2-right > p:nth-child(3) {
         font-size: 3rem;
     }
+    .ar-layer-3 {
+        margin: 0 0 1rem 0;
+        padding: 2rem 1rem 0rem 1rem;
+    }
+    .ar-layer-3-container{
+        flex-direction: column;
+    }
+    .ar-layer-3-left,
+    .ar-layer-3-right{
+        width: auto;
+        text-align: justify;
+    }
+    .ar-layer-3-left-info {
+        font-size: 1.3rem;
+    }
+    .ar-layer-3-medium-text {
+        font-size: 1.3rem;
+    }
+    .ar-layer-4{
+        margin: 0;
+        box-shadow: none;
+        margin-bottom: 1rem;
+    }
 }
 
 /* Accident Recovery */
+
+/*Fleet Management**/
+.fleet-header{
+    height: fit-content;
+    padding: 4rem 1rem;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705387/Assets/fleet-header_igb1ks.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.fleet-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4)
+}
+.fleet-header > p{
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    max-width: 900px;
+    z-index: 3;
+}
+.fleet-body{
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 8rem 2rem 8rem;
+    text-align: left;
+}
+.fleet-body-bold{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+.fleet-body-small{
+    line-height: 2rem;
+    margin: 0rem 0rem 0.6rem 0rem;
+    display: flex;
+}
+.fleet-body-five{
+    flex-direction: column;
+}
+.fleet-body-five > div {
+    margin-left: 3rem;
+}
+.fleet-body-five > div > p{
+    margin: 0rem 0rem 0.8rem 0rem;
+    line-height: 2rem;
+}
+.fleet-number{
+    margin-right: 0.8rem;
+}
+@media screen and (max-width:900px){
+    .fleet-header{
+        height: 300px;
+    }
+    .fleet-header > p{
+        font-size: 2rem;
+    }
+    .fleet-body{
+        margin: 0;
+        padding: 2rem 1rem;
+    }
+    .fleet-body-bold{
+        font-size: 1rem;
+    }
+}
+/*Fleet Management**/
+*+p, p{
+    margin-top: 0 !important;
+}
+/*Body Refurbishment*/
+.ref-header{
+    min-height: 400px;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705403/Assets/motors-as-header_xdiwoa.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+#ref-first{
+    margin-bottom: 0rem;
+    padding: 1rem 5rem 0rem 5rem;
+    line-height: 2.3rem;
+}
+.ref-header > p:first-of-type{
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 2rem;
+}
+.ref-layer-one{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 5rem;
+    margin-bottom: 2rem;
+}
+.ref-layer-one > p{
+    line-height: 2.3rem;
+    width: 45%;
+    text-align: justify;
+}
+.ref-layer-two{
+    background-color: #002F14;
+    margin: 0rem 3rem 2rem 3rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    min-height: 300px;
+}
+.ref-layer-two > p{
+    width: 40%;
+    color: white;
+}
+.ref-layer-two > div{
+    width: 40%;
+    color: white;
+}
+.ref-layer-two > p{
+    font-size: 2.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+.ref-layer-two > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+.ref-layer-form-container{
+    display: flex;
+    justify-content: center;
+    margin: 0rem 1rem 3rem 1rem;
+}
+.ref-layer-form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem;
+    width: 935px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ref-layer-form > section{
+    display: flex;
+    flex-direction: column;
+}
+.ref-layer-form > section:first-of-type{
+    margin-bottom: 3rem;
+}
+.ref-layer-form > section > p:first-of-type{
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.ref-layer-form-row{
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 2rem;
+}
+.ref-layer-form-row > input,
+.ref-layer-form > section input{
+    width: 45%;
+    padding: 0.8rem;
+    border: 1px solid gray;
+}
+.ref-layer-form > section > textarea{
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid gray;
+}
+.ref-layer-form > button{
+    width: fit-content;
+    padding: 1rem 3rem;
+    background-color: #129347;
+    border-radius: 0.3rem;
+    border: none;
+    color: white;
+}
+@media screen and (max-width: 950px){
+    .ref-header{
+        padding: 1rem;
+        font-size: 2rem;
+    }
+    .ref-header > p:first-of-type {
+        font-size: 2rem;
+    }
+    .ref-header > p:last-of-type {
+        font-size: 1rem;
+        text-align: justify;
+        max-width: auto;
+    }
+    .ref-layer-one {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .ref-layer-one > p {
+        width: auto;
+    }
+    .ref-layer-two {
+        margin: 0rem 0rem 3rem 0rem;
+        padding: 1rem;
+        flex-direction: column;
+        min-height: auto;
+    }
+    .ref-layer-two > p, .ref-layer-two > div {
+        width: auto;
+        text-align: center;
+    }
+    .ref-layer-two > p{
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+    .ref-layer-two > div{
+        font-size: 2rem;
+    }
+    .ref-layer-form-container{
+        margin: 0rem 0rem 2rem 0rem;
+    }
+    .ref-layer-form {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 1rem;
+        width: 100%;
+        box-shadow: none;
+    }
+    .ref-layer-form-row {
+        flex-direction: column;
+        margin-bottom: 0rem;
+    }
+    .ref-layer-form-row > input, .ref-layer-form > section input {
+        width: auto;
+        margin-bottom: 1rem;
+    }
+    #ref-first{
+        padding: 1rem;
+        line-height: 2.3rem;
+    }
+}
+/*Body Refurbishment*/
+
 
 /* *{
     background: #000 !important;

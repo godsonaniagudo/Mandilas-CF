@@ -1,10 +1,13 @@
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
 }
 p{
     margin: 0;
     padding: 0;
+}
+address, dl, fieldset, figure, ol, p, pre, ul {
+    margin: 0 0 0px 0 !important;
 }
 
 /* Cart */
@@ -66,13 +69,15 @@ p{
 .cart-info-details > div:first-of-type {
     display: flex;
     width: 70%;
+    justify-content: space-between;
 }
 .cart-info-details > div:first-of-type > img:first-of-type{
-    width: 300px;
+    width: 50%;
     height: 180px;
     object-fit: contain;
 }
 .cart-info-details-1{
+    width: 45%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,11 +98,11 @@ p{
     font-size: 1.3rem;
     font-weight: 600;
 }
-.cart-info-details-1 > div > p:last-of-type{
+/* .cart-info-details-1 > div > p:last-of-type{
     padding: 0.1rem 0.5rem;
     background-color: #129347;
     color: white;
-}
+} */
 .cart-info-details-1 > p:nth-child(5){
     font-weight: 400;
 }
@@ -105,6 +110,13 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+.cart-info-details-2 > img{
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin: 0 auto;
+    cursor: pointer;
 }
 .cart-info-details-2 > div > img{
     width: 50px;
@@ -130,6 +142,7 @@ p{
     font-size: 3rem;
     border-radius: 0.3rem;
     background-color: #CCECEB;
+    cursor: pointer;
 }
 .cart-item-size > input{
     width: 40px;
@@ -235,6 +248,11 @@ p{
     margin: 0rem 0rem 2rem 7rem;
     /* width: 1450px; */
 }
+.cart-text-bold-green{
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #129347;
+}
 .cart-content-bottom > p:first-of-type{
     font-size: 1.5rem;
     font-weight: 800;
@@ -296,6 +314,13 @@ p{
     border-radius: 0.4rem;
     background-color: #129347;
     cursor: pointer;
+}
+#cart-shipping-info{
+    font-size: 0.8rem;
+}
+#noItemInCart{
+    font-size: 1.5rem;
+    align-self: center;
 }
 @media screen and (max-width:1350px){
     .cart-content {

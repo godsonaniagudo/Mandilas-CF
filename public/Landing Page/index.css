@@ -23,26 +23,42 @@ p{
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    transition: transform 0.5s ease-in-out;
+    align-items: center;
+    transition: all 0.5s linear;
+    position: relative;
+}
+.landing-side:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .landing-side:hover{
     transform: scale(1.1);
 }
-.landing-side.ac{
-    background-image: url(../Assets/landing-ac.jpg);
+.landing-side.cooling{
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705392/Assets/landing-ac_ficpko.png);
 }
-.landing-side.motors{
-    background-image: url(../Assets/landing-motors.jpg);
+.landing-side.mobility{
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705389/Assets/landing-motors_xzhp9z.png);
 }
-.landing-side.properties{
-    background-image: url(../Assets/landing-properties.jpg);
+.landing-side.aftersales{
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1583312645/Assets/aftersales_mainlanding_2x_lqtsgo.png);
 }
-.landing-side > p{
+.landing-side > a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 3rem;
     font-weight: 600;
-    position: relative;
-    bottom: 5rem;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
 }
 .landing-page > img{
     position: absolute;
@@ -63,15 +79,18 @@ p{
     position: relative;
     background-color: #129347;
     width: 150px;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0.3rem;
 }
-.landing-social-media > img{
+.landing-social-media > a > img{
     transform: rotate(-90deg);
     width: 30px;
     height: 30px;
 }
-@media screen and (max-width: 1350px){
+.landing-social-media > a{
+    display: block;
+}
+@media screen and (max-width: 950px){
     .landing-page{
         flex-direction: column;
     }
@@ -81,7 +100,7 @@ p{
         justify-content: center;
         align-items: center;
     }
-    .landing-side > p{
+    /* .landing-side > p{
         font-size: 3rem;
         font-weight: 600;
         position: relative;
@@ -94,7 +113,7 @@ p{
         height: 90px;
         top: 1rem;
         left: 2rem;
-    }
+    } */
     .landing-social-media{
         height: 40px;
     }
@@ -109,8 +128,6 @@ p{
     .landing-social-media > img{
         transform: rotate(180deg);
     }
-}
-@media screen and (max-width: 1350px){
     .landing-page > img {
         position: absolute;
         width: 70px;

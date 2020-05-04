@@ -1,3 +1,133 @@
+/**DOM ELEMENTS & VARIABLES */
+let isUserLoggedIn = false;
+let USER_ID = ''
+const navbarCart = document.querySelectorAll('.cart-container');
+const navbarToggler = document.querySelector('#navbarToggler');
+const preAuth = document.querySelector('.pre-auth');
+const postAuth = document.querySelector('.post-auth');
+const menu = document.querySelector('.menu');
+const productList = document.querySelector('.main-ac-right-content');
+const navFirstName = document.querySelector('#navbarFirstName')
+const navLastName = document.querySelector('#navbarLastName')
+const navEmail = document.querySelector('#navbarEmail')
+const navPassword = document.querySelector('#navbarPassword')
+const navPhoneNumber = document.querySelector('#navbarPhoneNumber')
+const navRegister = document.querySelector('#registerFromRegisterModal')
+const navLogIn = document.querySelector('#loginFromLoginModal');
+const navLogInEmail = document.querySelector('#navLogInEmail')
+const navLogInPassword = document.querySelector('#navLogInPassword')
+const loginButton = document.querySelector('#login')
+const registerButton = document.querySelector('#register')
+const loginModal = document.querySelector('#loginModal')
+const registerModal = document.querySelector('#registerModal')
+const registerFromLoginModal = document.querySelector('#registerFromLoginModal');
+const loginFromRegisterModal = document.querySelector('#loginFromRegisterModal');
+const closeLogin = document.querySelector('#closeLogin');
+const closeRegister = document.querySelector('#closeRegister')
+// Log Out Buttons
+const navLogOut = document.querySelector('#logout')
+//Pre Sign In Buttons
+const preSignedInButtonContainer = document.querySelector('.pre-auth')
+//Post Sign In Buttons
+const postSignedInButtonContainer = document.querySelector('.post-auth')
+//Loader
+const loader = document.querySelector('#loader')
+//Message Toast
+const infoToast = document.querySelector('#infoToast');
+const infoText = document.querySelector('#infoText');
+/**DOM ELEMENTS & VARIABLES */
+
+//Client Side Validation
+const navbarMenuItems = document.querySelectorAll('[data-nav-key]');
+    const handleNavbarMenuItemClick = (elem, index, arr) => {
+        let hasSubmenu = elem.getAttribute('data-nav-key');
+        if(hasSubmenu === "true"){
+            arr.forEach((item, innerIndex) => {
+                if(index !== innerIndex){
+                    item.children[2].classList.remove('show-tooltip-desktop');
+                }
+            })
+            elem.children[2].classList.toggle("show-tooltip-desktop");
+        }
+    }
+    navbarMenuItems.forEach((item, index, arr) => {
+        item.addEventListener('click', () => handleNavbarMenuItemClick(item, index, arr))
+    })
+
+    navbarToggler.addEventListener('click', () => {
+        if(navbarToggler.children[0].classList.contains("fa-bars")){
+            navbarToggler.children[0].classList.remove('fa-bars')
+            navbarToggler.children[0].classList.add('fa-close')
+        }else{
+            navbarToggler.children[0].classList.remove('fa-close')
+            navbarToggler.children[0].classList.add('fa-bars')
+        }
+        menu.classList.toggle('menu-show');
+        if(preAuth){
+            preAuth.classList.toggle('auth-show');
+        }
+        if(postAuth){
+            postAuth.classList.toggle('auth-show')
+        }
+    })
+
+/**Modal Management */
+
+//Show Login Modal upon click
+loginButton.addEventListener('click', () => {
+    loginModal.style.display = "flex"
+})
+//Show Regsiter Modal upon click
+registerButton.addEventListener('click', () => {
+    registerModal.style.display = "flex"
+})
+//Handle Register button click in Login Modal
+registerFromLoginModal.addEventListener('click', () => {
+    clearLogin()
+    loginModal.style.display = "none";
+    registerModal.style.display = "flex"
+
+})
+//Handle Login button click in Register Modal
+loginFromRegisterModal.addEventListener('click', () => {
+    clearRegister()
+    registerModal.style.display = "none"
+    loginModal.style.display = "flex";
+})
+//Close Login Modal
+closeLogin.addEventListener('click', () => {
+    clearLogin()
+    loginModal.style.display = 'none'
+})
+//Close Register Modal
+closeRegister.addEventListener('click', () => {
+    clearRegister();
+    registerModal.style.display = 'none'
+})
+
+/**Modal Management */
+
+/**Client Side JS */
+
+// Endpoint Info for all products
+const productsEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/products';
+// Endpoint Info for a single product
+const singleProductEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/product';
+// Endpoint to add item to cart
+const addToCartEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/cart/add';
+// Endpoint to get items in cart
+const getItemsInCartEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/cart';
+// Endpoint to make payment
+const initiatePaymentEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/payment';
+// Endpoint Info for all products
+const updateCartEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/cart'
+const deleteCartItemEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/cart'
+const signUpEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/sign-up'
+const logInEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/sign-in'
+const getProductReviewEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/review'
+const getUserInfoEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/user';
+const getAnyUserInfoEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/anyuser';
+const searchProductsEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/products/search'
 //Check Environment
 let ENV = ''
 const checkEnvironment = () => {
@@ -10,6 +140,15 @@ const checkEnvironment = () => {
     console.log(ENV);
 }
 checkEnvironment();
+
+//Formatter
+const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits : 6,
+    minimumFractionDigits : 0
+})
+
 // Handle Showing Loader
 const addClass = (elem, customClass) => {
     elem.parentNode.classList.add('removePadding')
@@ -21,105 +160,18 @@ const removeClass = (elem, customClass) => {
     elem.classList.remove(customClass)
 }
 
-const initializeLocalStorage = () => {
-    // console.log(localStorage.getItem('mandilasCart'))
-    // console.log(localStorage.getItem('mandilasToken'))
-    const cart = localStorage.getItem('mandilasCart');
-    const token = localStorage.getItem('mandilasToken');
-    if(cart === null){
-        localStorage.setItem("mandilasCart", JSON.stringify([]))
-    }
-    if(token === null){
-        localStorage.setItem("mandilasToken", JSON.stringify(""))
-    }
-    console.log(localStorage.getItem('mandilasCart'))
-    console.log(localStorage.getItem('mandilasToken'))
+//Clear Login
+const clearLogin = () => {
+    navLogInEmail.value = "",
+    navLogInPassword.value = ""
 }
-initializeLocalStorage();
-
-/**Desktop Menu */
-const menuItems = document.querySelectorAll('.hometwo-menu-item.drop')
-menuItems.forEach((menuItem, outerIndex, arr) => {
-    menuItem.addEventListener('click', () => {
-        if(window.innerWidth >= 940){
-            arr.forEach((item, innerIndex) => {
-                if(innerIndex !== outerIndex){
-                    item.children[1].classList.add('hometwo-submenu-hide')
-                }
-            })
-            menuItem.children[1].classList.toggle('hometwo-submenu-hide')
-        }else{
-            arr.forEach((item, innerIndex) => {
-                if(innerIndex !== outerIndex){
-                    item.children[1].classList.add('hometwo-submenu-hide')
-                }
-            })
-            menuItem.children[1].classList.toggle('hometwo-submenu-hide')
-        }
-    })
-})
-
-let isUserLoggedIn = null;
-const toggle = document.querySelector('.hometwo-toggle');
-const menu = document.querySelector('.hometwo-menu');
-const navbarButtons = document.querySelector('#hometwo-navbar-buttons');
-const navFirstName = document.querySelector('#navbarFirstName')
-const navLastName = document.querySelector('#navbarLastName')
-const navEmail = document.querySelector('#navbarEmail')
-const navPassword = document.querySelector('#navbarPassword')
-const navPhoneNumber = document.querySelector('#navbarPhoneNumber')
-const navRegister = document.querySelector('#navbarRegister')
-const navLogIn = document.querySelector('#navbarLogIn');
-const navLogInEmail = document.querySelector('#navLogInEmail')
-const navLogInPassword = document.querySelector('#navLogInPassword')
-// Log Out Buttons
-const navLogOut = document.querySelector('#navLogOut')
-//Pre Sign In Buttons
-const preSignedInButtonContainer = document.querySelector('.hometwo-buttons')
-//Post Sign In Buttons
-const postSignedInButtonContainer = document.querySelector('.hometwo-signedin-buttons')
-//Loader
-const loader = document.querySelector('#loader')
-//Message Toast
-const toast = document.querySelector('#messageToast');
-//Client Side Validation
-const signUpEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/sign-up'
-const logInEndpoint = 'https://peaceful-river-39598.herokuapp.com/api/v1/mandilas/auth/sign-in'
-
-//Hamburger Menu
-toggle.addEventListener('click', () => {
-    const hamburgerPresent = toggle.children[0].classList.contains('fa-bars')
-    const closeIconPresent = toggle.children[0].classList.contains('fa-close')
-    if(hamburgerPresent){
-        console.log("showing Menu")
-        toggle.children[0].classList.remove('fa-bars');
-        toggle.children[0].classList.add('fa-close');
-        
-    }
-    if(closeIconPresent){
-        console.log("hiding Menu")
-        toggle.children[0].classList.remove('fa-close');
-        toggle.children[0].classList.add('fa-bars');
-    }
-    navbarButtons.classList.toggle('show-item');
-    menu.classList.toggle('show-item');
-})
-/**Desktop Menu */
-
-/**Homepage Modal Close*/
-const closeLoginModal = document.querySelector('.sl-login-close')
-const closeSignUpModal = document.querySelector('.sl-signup-close')
-closeLoginModal.addEventListener('click', () => {
-    $('#login').modal('hide')
-})
-closeSignUpModal.addEventListener('click', () => {
-    $('#signUp').modal('hide')
-})
-/**Homepage Modal Close*/
-
-
-/**GLOBAL VARIABLES */
-/**Communication With Server */
+const clearRegister = () => {
+    navFirstName.value = "",
+    navLastName.value = "",
+    navEmail.value = "",
+    navPhoneNumber.value = "",
+    navPassword.value = ""
+}
 const shakeInput = (elem) => {
     elem.classList.add('shake')
     elem.classList.add('invalid-input')
@@ -127,6 +179,10 @@ const shakeInput = (elem) => {
         elem.classList.remove('shake')
         elem.classList.remove('invalid-input')
     }, 500);
+}
+
+const inputIsNotEmpty = (str) => {
+    return (str !== "" && str !== null) ? true : false
 }
 
 const isValidText = (str) => {
@@ -145,6 +201,32 @@ const isValidPhoneNumber = (str) => {
     return (phoneRegex.test(trimStr) && trimStr !== "") ? true : false
 }
 
+//Update Cart Number
+const updateCartIcon = async () => {
+    const cartNumber = document.querySelectorAll('.cart-container > .no-of-items')
+    let token = localStorage.getItem('mandilasToken')
+
+    try{
+        if(token === null){
+            return cartNumber.forEach(item => item.innerHTML = 0)
+        }
+        let response = await fetch(`${getItemsInCartEndpoint}`, {
+            method:'GET',
+            headers:{
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        if(response.status !== 200){
+            return cartNumber.forEach(item => item.innerHTML = 0)
+        }
+        let data = await response.json();
+        cartNumber.forEach(item => item.innerHTML = data.length)
+
+    } catch (error){
+        cartNumber.forEach(item => item.innerHTML = 0)
+    }
+}
+
 //Validate Input from Sign Up Form
 const validateData = (elem) => {
     if(elem.id === 'navbarFirstName' || elem.id === 'navbarLastName'){
@@ -161,7 +243,8 @@ const validateData = (elem) => {
     }
 }
 
-const handleRegister = () => {
+// Handle the Register Modal
+const handleRegister = async () => {
     validateData(navFirstName)
     validateData(navLastName)
     validateData(navEmail)
@@ -170,7 +253,8 @@ const handleRegister = () => {
     if(validateData(navFirstName) &&
     validateData(navLastName) &&
     validateData(navEmail) &&
-    validateData(navPassword)){
+    validateData(navPassword) &&
+    validateData(navPhoneNumber)){
         // Add Loader
         loader.classList.add('showLoader')
         //Create Request Body
@@ -192,167 +276,186 @@ const handleRegister = () => {
         }
 
         //Post Data to Custom Mandilas Endpoint using browser-based FETCH
-        fetch(signUpEndpoint, options)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
+        try{
+            let response = await fetch(signUpEndpoint, options)
+            let data = await response.json();
+
+            //Invalid Phone Number
+            if(data.code === 'auth/phone-number-already-exists'){
+                infoText.innerHTML = "Phone number belongs to another user"
+                infoToast.classList.add('showInfoToast');
                 loader.classList.remove('showLoader')
-                if(data.status === "success"){
-                    const {name, email, token} = data.data
-                    //Store variables on client side
-                    localStorage.setItem('mandilasToken', `${token}`)
-                    toast.children[0].innerHTML = `Hi ${body["firstName"]}, You have successfully registered`
-                    postSignedInButtonContainer.children[0].innerHTML = `Hello, ${body["firstName"]}`;
-                    //Remove Modal
-                    $('#signUp').modal('hide')
-                    // Show Pre Login View
-                    postSignedInButtonContainer.style.display = 'flex';
-                    preSignedInButtonContainer.style.display = 'none';
-                    //Clear Defaults
-                    navFirstName.value = "",
-                    navLastName.value = "",
-                    navEmail.value = "",
-                    navPhoneNumber.value = "",
-                    navPassword.value = "",
-                    // Set User State to logged in
-                    isUserLoggedIn = true;
-                }
-                if(data.status === "error" && data.code === "MAIL_EXISTS"){
-                    toast.children[0].innerHTML = `Hi ${body["firstName"]}, this email already exists`;
-                }
-                toast.classList.add('showMessageToast');
-                    setTimeout(() => {
-                        toast.classList.remove('showMessageToast')
-                    }, 2000);
-            })
+                return setTimeout(() => {
+                    infoToast.classList.remove('showInfoToast')
+                }, 2000);
+            }
+            if(data.code === 'auth/email-already-exists'){
+                infoText.innerHTML = "Email already in use, try logging in"
+                infoToast.classList.add('showInfoToast');
+                loader.classList.remove('showLoader')
+                return setTimeout(() => {
+                    infoToast.classList.remove('showInfoToast')
+                }, 2000);
+            }
+            const {uid, email, firstName, lastName, token} = data
+            //Store variables on client side
+            localStorage.setItem('mandilasToken', `${token}`)
+            postSignedInButtonContainer.children[0].innerHTML = `Hello, ${body["firstName"]}`;
+            // Remove Modal
+            registerModal.style.display = "none"
+            loginModal.style.display = "none"
+            // Show Post Register View
+            postSignedInButtonContainer.style.display = 'flex';
+            preSignedInButtonContainer.style.display = 'none';
+            //Clear Defaults
+            clearRegister();
+            isUserLoggedIn = true;
+            // Set User ID
+            USER_ID = uid
+
+            loader.classList.remove('showLoader')
+            await updateCartIcon();
+            infoText.innerHTML = `Hi ${firstName}, You have successfully registered`
+            infoToast.classList.add('showInfoToast');
+            setTimeout(() => {
+                infoToast.classList.remove('showInfoToast')
+            }, 2000);
+
+
+            //Send Welcome Email
+            // $.ajax({
+            //     url : '/sendWelcomeMail',
+            //     type : "POST",
+            //     data : {
+            //         email : email,
+            //         name : `${firstName}, ${lastName}`
+            //     },
+            //     success : function () {
+            //         console.log("Email sent");
+            //     }
+            // })
+        } catch (error){
+            console.log(error)
+        }
     }
 }
 navRegister.addEventListener('click', handleRegister)
 
-const handleLogIn = () => {
-    validateData(navLogInEmail);
-    validateData(navLogInPassword);
-    if(validateData(navLogInEmail) && validateData(navLogInPassword)){
-        // Add Loader
-        loader.classList.add('showLoader')
-        //Create Request Body
-        const body = {
-            "email":navLogInEmail.value,
-            "password":navLogInPassword.value
-        }
-        // Fetch options for posting JSON
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        }
-        fetch(logInEndpoint, options)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                loader.classList.remove('showLoader')
-                if(data.status === 'success'){
-                    const {displayName, email, customToken} = data.data;
-                    let firstName = `${displayName}`.split(' ')[1]
-                    toast.children[0].innerHTML = `Hi ${firstName}, You have successfully signed in.`
-                    postSignedInButtonContainer.children[0].innerHTML = `Hello, ${firstName}`;
-                    localStorage.setItem('mandilasToken', `${customToken}`);
-                    //Remove Modal
-                    $('#login').modal('hide')
-                    
-                    //Clear Defaults
-                    navLogInEmail.value = "",
-                    navLogInPassword.value = "",
-                    // Set User State to logged in
-                    isUserLoggedIn = true;
-                    postSignedInButtonContainer.style.display = 'flex';
-                    preSignedInButtonContainer.style.display = 'none';
-                }
-                if(data.status === 'error' && data.code === 'INVALID PASSWORD'){
-                    toast.children[0].innerHTML = `The password you entered is incorrect.`
-                }
-                if(data.status === 'error' && data.code === 'INVALID EMAIL'){
-                    toast.children[0].innerHTML = `The email you entered does not exist. Try signing up.`
-                }
-                // Show the Toast
-                toast.classList.add('showMessageToast');
+// Handle the Login Modal
+const handleLogIn = async () => {
+        if(validateData(navLogInEmail) && validateData(navLogInPassword)){
+            try{
+            // Add Loader
+            loader.classList.add('showLoader')
+            //Create Request Body
+            const body = {
+                "email":`${navLogInEmail.value}`,
+                "password":`${navLogInPassword.value}`
+            }
+
+            // Fetch options for posting JSON
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            }
+
+            const response = await fetch(logInEndpoint, options);
+            if(response.status === 500){
+                infoText.innerHTML = `Login unsuccessful, Check Details`
+                infoToast.classList.add('showInfoToast');
                 setTimeout(() => {
-                    toast.classList.remove('showMessageToast')
-                }, 3000);
-            })
-            .catch(error => {
-                console.log(error)
-            })
+                    infoToast.classList.remove('showInfoToast')
+                }, 2000);
+                return loader.classList.remove('showLoader')
+            }
+
+            //Valid Data Provided
+            const data = await response.json();
+            const {uid, token, firstName, lastName} = data
+            //Store variables on client side
+            localStorage.setItem('mandilasToken', `${token}`)
+
+            postSignedInButtonContainer.children[0].innerHTML = `Hello, ${firstName}`;
+            infoText.innerHTML = `Hi ${firstName}, You have successfully signed in.`
+            //Remove Modal
+            loginModal.style.display = "none"
+            //Clear Defaults
+            navLogInEmail.value = "",
+            navLogInPassword.value = "",
+            // Set User State to logged in
+            isUserLoggedIn = true;
+            //Set User ID
+            USER_ID = uid
+            postSignedInButtonContainer.style.display = 'flex';
+            preSignedInButtonContainer.style.display = 'none';
+
+            loader.classList.remove('showLoader')
+            console.log(window.location)
+            await updateCartIcon();
+            window.location.reload()
+            // Show the Toast
+            infoToast.classList.add('showInfoToast');
+            setTimeout(() => {
+                infoToast.classList.remove('showInfoToast')
+            }, 3000);
+
+        }catch(error){
+            console.log(error)
+            infoText.innerHTML = `Login unsuccessful`
+            infoToast.classList.add('showInfoToast');
+            setTimeout(() => {
+                infoToast.classList.remove('showInfoToast')
+            }, 2000);
+        }
     }
 }
 navLogIn.addEventListener('click', handleLogIn)
 
-/**Communication With Server */
-
-const cartNumber = document.querySelectorAll('.navbar-cart-container > .no-of-items')
-// On Page Load, Check If Token exists client-side.
-const handlePageLoad = () => {
+const authenticateUser = async () => {
+    let clientToken = localStorage.getItem('mandilasToken');
+    // If theres a token stored on the client side
+    try{
+        if(clientToken){
+            const options = {
+                method: 'GET',
+                headers: {
+                    Authorization:`Bearer ${clientToken}`
+                },
+            }
+            let response = await fetch(getUserInfoEndpoint, options)
+            if(response.status !== 200){
+                return null
+            }
+            let record = await response.json();
+            isUserLoggedIn = true
+            return record;
+        }else{
+            isUserLoggedIn = false
+            return null
+        }
+    } catch (error){
+        console.log(error);
+    }
+}
+const handleNavbarLoad = async () => {
     //Initialize UI
     postSignedInButtonContainer.style.display = 'none';
     preSignedInButtonContainer.style.display = 'flex';
-    
-    // Handle Cart Icon
-    let numOfItems = JSON.parse(localStorage.getItem('mandilasCart'));
-    cartNumber.forEach(item => item.innerHTML = numOfItems.length)
-
-    let clientToken = localStorage.getItem('mandilasToken');
-    // If theres a token stored on the client side
-    if((clientToken) && (clientToken !== 'undefined')){
-        // Sign In with that token
-        firebase.auth().signInWithCustomToken(clientToken)
-        .then((record) => {
-            let firstName = `${record.user.displayName}`.split(' ')[0];
-            postSignedInButtonContainer.children[0].innerHTML = `Hello, ${firstName}`;
-            toast.children[0].innerHTML = `Welcome back, ${firstName}`
-            isUserLoggedIn = true;
-            // Show Post Login View
-            postSignedInButtonContainer.style.display = 'flex';
-            preSignedInButtonContainer.style.display = 'none';
-
-            // Display Message
-            toast.classList.add('showMessageToast');
-                setTimeout(() => {
-                    toast.classList.remove('showMessageToast')
-                }, 3000);
-        })
-        .catch(error => {
-            console.log(error)
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if(errorCode === "auth/invalid-custom-token"){
-                // Handle Buttons
-
-                loader.classList.remove('showLoader')
-                toast.children[0].innerHTML = `You have been signed out`
-                toast.classList.add('showMessageToast');
-                setTimeout(() => {
-                    toast.classList.remove('showMessageToast')
-                }, 3000);
-            }
-            if(errorCode === "auth/network-request-failed"){
-                loader.classList.remove('showLoader')
-                toast.children[0].innerHTML = `Check your network and try again`
-                toast.classList.add('showMessageToast');
-                setTimeout(() => {
-                    toast.classList.remove('showMessageToast')
-                }, 3000);
-            }
-            });
-    } else{
-        
+    let user = await authenticateUser();
+    if(user){
+        postSignedInButtonContainer.style.display = 'flex';
+        preSignedInButtonContainer.style.display = 'none';
+        postSignedInButtonContainer.children[0].innerHTML = `Hello, ${user.firstName}`;
+        await updateCartIcon();
+    }else{
+        postSignedInButtonContainer.style.display = 'none';
+        preSignedInButtonContainer.style.display = 'flex';
     }
 }
-window.addEventListener('DOMContentLoaded', handlePageLoad)
+window.addEventListener('load', handleNavbarLoad)
 
 // On User LogOut
 const handleLogOut = () => {
@@ -367,6 +470,11 @@ const handleLogOut = () => {
             postSignedInButtonContainer.style.display = 'none';
             preSignedInButtonContainer.style.display = 'flex';
             loader.classList.remove('showLoader')
+            // Update User Status
+            isUserLoggedIn = false;
+            USER_ID = ''
+            //Reload Page
+            window.location.reload()
         })
         .catch(error => {
             //Handle Errors here
@@ -374,25 +482,37 @@ const handleLogOut = () => {
 }
 navLogOut.addEventListener('click', handleLogOut)
 
-//Handle Cart Icon
-const cart = document.querySelectorAll('.navbar-cart-container');
-const handleCartIcon = () => {
-    let cart = JSON.parse(localStorage.getItem('mandilasCart'));
-    //If Cart is Empty
-    if(cart.length <= 0){
-        toast.children[0].innerHTML = `There are no items in your cart, try adding some.`;
-            toast.classList.add('showMessageToast');
-                setTimeout(() => {
-                    toast.classList.remove('showMessageToast')
-                }, 2000);
-    } else if(cart.length > 0){
-        if(ENV === 'development'){
-            window.location.href = `/Cart/index.html`
-        }else{
-            window.location.href = `../Cart/index.html`
-        }
+// User clicks on homepage logo
+const navbarLogo = document.querySelector('.navbar-logo')
+navbarLogo.addEventListener('click', (e) => {
+    e.preventDefault()
+    window.location.href = "../Landing Page/index.html"
+})
+
+// User clicks on Cart
+navbarCart.forEach(item => {
+    const redirectToCart = () => {
+        window.location.href = `../Cart/index.html`;
     }
-}
-cart.forEach(item => {
-    item.addEventListener('click', handleCartIcon)
+    item.addEventListener('click', redirectToCart)
+})
+
+//User clicks on his/her name
+const nameContainer = document.querySelector('#nameContainer');
+nameContainer.addEventListener('click', async () => {
+    // Show Items
+    try{
+        let user = await authenticateUser();
+        if(user === null){
+            infoText.innerHTML = `Kindly make sure you are logged in and try again`
+            infoToast.classList.add('showInfoToast');
+            return setTimeout(() => {
+                infoToast.classList.remove('showInfoToast')
+            }, 2000);
+        }
+        window.location.href = "../Account Profile/index.html"
+
+    } catch (error){
+        console.log(error)
+    }
 })

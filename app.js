@@ -18,6 +18,9 @@ let config = {
 
 const express = require('express')
 const bodyParser = require('body-parser')
+const sgMail = require('@sendgrid/mail');
+
+
 
 
 var app = require('express')();
@@ -28,6 +31,8 @@ var admin = require("firebase-admin");
 var stream = require('stream');
 
 var cloudinary = require('cloudinary').v2;
+
+
 
 cloudinary.config({
   cloud_name: 'mandilas',
@@ -46,9 +51,13 @@ admin.initializeApp({
 
 var bucket = admin.storage().bucket();
 
+app.use(bodyParser.json({
+  limit: '1mb'
+}));
 app.use(bodyParser.urlencoded({
+  limit: '1mb',
   extended: true
-}))
+}));
 
 
 
@@ -79,6 +88,12 @@ const sessionClient = new dialogflow.SessionsClient(config);
 //   res.sendFile(__dirname + "/public/admin/index.html")
 // })
 
+const dotenv = require('dotenv')
+dotenv.config()
+
+
+
+
 app.post("/serviceList", (req, res) => {
   // Get a database reference to our posts
   console.log("Retrieving list");
@@ -107,7 +122,7 @@ app.post("/usersList", (req, res) => {
     console.log(snapshot);
     res.status(200).send({
       serviceListObject: snapshot.val(),
-      userListSnapshot : snapshot
+      userListSnapshot: snapshot
     });
   }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -187,7 +202,7 @@ app.post("/admin", (req, res) => {
           } else {
             ref.update({
               trackingCode: trackingCode,
-              carImage : result.url
+              carImage: result.url
             }, function(error) {
               if (error) {
 
@@ -287,6 +302,24 @@ app.post("/admin", (req, res) => {
 
 })
 
+
+app.post("/productList", (req, res) => {
+  console.log("Retrieving list");
+  var db = admin.database();
+  var ref = db.ref("products");
+
+  // Attach an asynchronous callback to read the data at our posts reference
+  ref.once("value", function(snapshot) {
+    console.log(snapshot.val());
+    res.status(200).send({
+      serviceListObject: snapshot.val(),
+      // userListSnapshot : snapshot
+    });
+  }, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  })
+})
+
 app.post('/', (req, res) => {
 
 
@@ -364,7 +397,79 @@ app.post('/', (req, res) => {
   executeQueries(projectId, sessionId, queries, languageCode);
 })
 
+app.post('/sendMail', (req, res) => {
+  // console.log(process.env.SENDGRID);
+  // const sgMail = require('@sendgrid/mail');
+  // sgMail.setApiKey(process.env.SENDGRID);
+  // const msg = {
+  //   to: 'mandilas.gcloud@gmail.com',
+  //   from: 'CustomerService@mandilasng.com',
+  //   subject: 'Welcome to Mandilas!',
+  //   text: 'Welcome to Mandilas, Godson!',
+  //   templateId: 'd-ff87ff89e7ea4036a26af1ce4b720a90',
+  //   dynamic_template_data: {
+  //     subject: 'Welcome to Mandilas.',
+  //     name: 'Some One'
+  //   },
+  //   html : "<h1></h1>"
+  // };
+  // //ES6
+  // sgMail
+  //   .send(msg)
+  //   .then(() => {
+  //     console.log("Sent");
+  //   }, console.error);
+})
 
+
+
+app.post('/sendWelcomeMail', (req, res) => {
+  console.log(process.env.SENDGRID);
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID);
+  const msg = {
+    to: req.body.email,
+    from: 'CustomerService@mandilasng.com',
+    subject: 'Welcome to Mandilas!',
+    text: 'Welcome to Mandilas, Godson!',
+    templateId: 'd-ff87ff89e7ea4036a26af1ce4b720a90',
+    dynamic_template_data: {
+      subject: 'Welcome to Mandilas.',
+      name: req.body.name
+    },
+    html : "<h1></h1>"
+  };
+  //ES6
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log("Sent");
+    }, console.error);
+})
+
+app.post('/sendComplaintMail', (req, res) => {
+  console.log(process.env.SENDGRID);
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID);
+  const msg = {
+    to: "aniagudo.godson@gmail.com",
+    from: 'CustomerService@mandilasng.com',
+    subject: 'Welcome to Mandilas!',
+    text: 'Welcome to Mandilas, Godson!',
+    templateId: 'd-ff87ff89e7ea4036a26af1ce4b720a90',
+    dynamic_template_data: {
+      subject: 'Welcome to Mandilas.',
+      name: req.body.name
+    },
+    html : "<h1></h1>"
+  };
+  //ES6
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log("Sent");
+    }, console.error);
+})
 
 
 app.post("/accountProfile", (req, res) => {
@@ -372,11 +477,113 @@ app.post("/accountProfile", (req, res) => {
   var db = admin.database();
   var ref = db.ref("tracking/" + req.body.trackingID);
 
+
+
   ref.once("value", function(snapshot) {
-    console.log(snapshot.val());
+
+    if (snapshot.val() != null) {
+      res.status(200).send({
+        serviceListObject: snapshot
+      })
+    } else {
+      res.status(200).send({
+        serviceListObject: "error"
+      })
+    }
   }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
   });
+})
+
+
+app.post("/admin/createnewproduct", (req, res) => {
+  const details = req.body.productDetails
+
+  console.log(req.body.productImage);
+
+
+
+  if (req.body.productImage == "" || req.body.productImage == null) {
+    res.status(200).send({
+      createResponse: "Select a product image"
+    })
+  } else {
+
+    if (details.name == "") {
+      res.status(200).send({
+        createResponse: "Enter product Name"
+      })
+    } else if (details.actualPrice == "") {
+      res.status(200).send({
+        createResponse: "Enter product Price"
+      })
+    } else if (details.capacity == "") {
+      res.status(200).send({
+        createResponse: "Enter product capacity"
+      })
+    } else if (details.text == "") {
+      res.status(200).send({
+        createResponse: "Enter product description"
+      })
+    } else if (details.size == "") {
+      res.status(200).send({
+        createResponse: "Enter product size"
+      })
+    } else if (details.usage == "") {
+      res.status(200).send({
+        createResponse: "Enter product usage"
+      })
+    } else {
+      var db = admin.database();
+      var productId = uuidv1()
+      var ref = db.ref("/products/" + productId)
+
+
+      ref.set(details, function(error) {
+        if (error) {
+
+        } else {
+          ref.update({
+            productID: productId
+          }, function(error) {
+            if (error) {
+
+            } else {
+              cloudinary.uploader.upload(req.body.productImage, function(error, result) {
+                console.log(result);
+                ref.update({
+                  cloudinaryImageID: result.public_id,
+                  imageUrl: result.url
+                }, function(error) {
+                  if (error) {
+
+                  } else {
+                    res.status(200).send({
+                      createResponse: "Ok"
+                    })
+                  }
+                })
+
+              })
+            }
+          })
+
+        }
+      })
+
+
+
+
+
+
+    }
+
+
+  }
+
+
+
+
 })
 
 
@@ -418,9 +625,11 @@ app.post("/updateJobs", (req, res) => {
           statuses.push(result[i][1].status)
         }
 
-        if(!statuses.includes("Pending") && !statuses.includes("In Progress")){
+        if (!statuses.includes("Pending") && !statuses.includes("In Progress")) {
           var statusRef = db.ref("/tracking/" + req.body.jobStatusDetails.recordID)
-          statusRef.update({status : "Completed"}, function(error) {
+          statusRef.update({
+            status: "Completed"
+          }, function(error) {
             if (error) {
 
             } else {
@@ -454,22 +663,24 @@ app.post("/updateJobs", (req, res) => {
 
 
 
-app.post("/setInProgress",(req,res) => {
+app.post("/setInProgress", (req, res) => {
   var db = admin.database();
   var statusRef = db.ref("/tracking/" + req.body.setInProgressDetails.jobKey)
-  statusRef.update({status : "In Progress"}, function(error) {
+  statusRef.update({
+    status: "In Progress"
+  }, function(error) {
     if (error) {
 
     } else {
       res.status(200).send({
-        resp : "OK"
+        resp: "OK"
       });
     }
   })
 })
 
 
-app.post("/checkCurrentStatus",(req,res) => {
+app.post("/checkCurrentStatus", (req, res) => {
   console.log(req.body.currentRecordTrackingCode);
   var db = admin.database();
   var ref = db.ref("tracking/" + req.body.currentRecordTrackingCode + "/status");
@@ -478,7 +689,7 @@ app.post("/checkCurrentStatus",(req,res) => {
 
 
     res.status(200).send({
-      status : snapshot.val()
+      status: snapshot.val()
     });
   }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
@@ -486,7 +697,7 @@ app.post("/checkCurrentStatus",(req,res) => {
 })
 
 
-app.post("/saveUserDetails",(req,res) => {
+app.post("/saveUserDetails", (req, res) => {
   console.log(req.body.userDetails);
   let allUserDetails = {}
 
@@ -498,31 +709,31 @@ app.post("/saveUserDetails",(req,res) => {
   const location = req.body.userDetails.location
   const userID = req.body.userDetails.userID
 
-  if(firstName != "" && firstName != null){
+  if (firstName != "" && firstName != null) {
     allUserDetails.firstName = firstName
   }
 
-  if(lastName != "" && lastName != null){
+  if (lastName != "" && lastName != null) {
     allUserDetails.lastName = lastName
   }
 
-  if(userEmailAddress != "" && userEmailAddress != null){
+  if (userEmailAddress != "" && userEmailAddress != null) {
     allUserDetails.userEmailAddress = userEmailAddress
   }
 
-  if(phoneNumber != "" && phoneNumber != null){
+  if (phoneNumber != "" && phoneNumber != null) {
     allUserDetails.phoneNumber = phoneNumber
   }
 
-  if(address != "" && address != null){
+  if (address != "" && address != null) {
     allUserDetails.address = address
   }
 
-  if(location != "" && address != null){
+  if (location != "" && address != null) {
     allUserDetails.location = location
   }
 
-  if(userID != "" && userID != null){
+  if (userID != "" && userID != null) {
     allUserDetails.userID = userID
   }
 
@@ -547,33 +758,33 @@ app.post("/saveUserDetails",(req,res) => {
 })
 
 
-app.post("/deleteUser",(req,res) => {
+app.post("/deleteUser", (req, res) => {
   admin.auth().deleteUser(req.body.userID)
-  .then(function() {
-    var db = admin.database();
-    var ref = db.ref("/users/" + req.body.userID)
+    .then(function() {
+      var db = admin.database();
+      var ref = db.ref("/users/" + req.body.userID)
 
 
-    ref.set(null, function(error) {
-      if(error){
-        res.status(200).send({
-          requestResponse: "Error"
-        })
-      }else{
-        res.status(200).send({
-          requestResponse: "Ok"
-        })
-        console.log('Successfully deleted user');
-      }
+      ref.set(null, function(error) {
+        if (error) {
+          res.status(200).send({
+            requestResponse: "Error"
+          })
+        } else {
+          res.status(200).send({
+            requestResponse: "Ok"
+          })
+          console.log('Successfully deleted user');
+        }
+      })
+
     })
-
-  })
-  .catch(function(error) {
-    res.status(200).send({
-      requestResponse: "Error"
-    })
-    console.log('Error deleting user:', error);
-  });
+    .catch(function(error) {
+      res.status(200).send({
+        requestResponse: "Error"
+      })
+      console.log('Error deleting user:', error);
+    });
 })
 
 //Whenever someone connects this gets executed
@@ -587,6 +798,7 @@ app.get("/", (req, res) => {
 
 
 
-http.listen(8085, function() {
+http.listen(8084, function() {
   console.log('listening on *:3000');
+
 });

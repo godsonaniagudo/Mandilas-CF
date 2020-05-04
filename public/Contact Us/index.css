@@ -1,6 +1,7 @@
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
+    overflow-x: hidden;
 }
 p{
     margin: 0;
@@ -13,25 +14,36 @@ p{
     background-size: cover;
     height: 500px;
     background-repeat: no-repeat;
-    background-image: url(../Assets/contact-header.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1586163621/Assets/Contact_Us_Banner-min_ncseus.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 3rem;
+    position: relative;
+}
+.contact-us-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5)
 }
 .contact-us-header > p:first-of-type{
-    font-size: 5.5rem;
+    font-size: 3rem;
     color: white;
     font-weight: 600;
     text-align: center;
+    z-index: 3;
 }
 .contact-us-content{
     display: flex;
     flex-direction: column;
     height: fit-content;
-    margin: 0rem 3rem 2rem 3rem;
-    background-color: rgba(255, 241, 216, 0.7);
-    padding: 3rem;
+    margin: 0rem 2rem 2rem 2rem;
+    background-color: #E2E2E2;
+    padding: 1.5rem;
 }
 .contact-us-section-buttons{
     display: flex;
@@ -43,7 +55,7 @@ p{
     border: none;
     border: 1px solid #313131;
     background-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     outline: none;
 }
@@ -56,53 +68,61 @@ p{
     /* height: 800px; */
     justify-content: space-between;
 }
+.contact-us-for-motors{
+    display:none;
+    flex-direction: column;
+}
+.contact-us-for-ac{
+    display: flex;
+    flex-direction: column;
+}
 .contact-us-section-left{
-    width: 45%;
+    width: 40%;
 }
 .contact-us-general{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin: 0rem 0rem 1rem 0rem;
 }
 .contact-us-big-text{
-    font-size: 5rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: black;
     margin-bottom: 2rem;
 }
 .contact-us-big-green{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #129347;
     margin-bottom: 1rem;
+    margin: 0rem 0rem 1rem 0rem;
 }
 .contact-us-medium-text{
-    font-size: 1.8rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #666;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin: 0rem 0rem 0.5rem 0rem;
 }
 .contact-us-small-text{
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: #666;
-    margin-bottom: 1rem;
+    margin: 0rem 0rem 1rem 0rem;
 }
 .contact-us-role-text{
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #666;
     margin-bottom: 1.5rem;
 }
 .contact-us-section-right{
-    width: 45%;
+    width: 50%;
     height: fit-content;
 }
-.contact-us-form{
+.contact-us-form {
     display: flex;
     flex-direction: column;
-    padding: 3rem 3rem;
-    width: 70%;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
     height: 100%;
     background-color: white;
     border-radius: 0.3rem;
@@ -196,7 +216,10 @@ p{
         font-size: 1.3rem;
     }
 }
-@media screen and (max-width:1350px){
+@media screen and (max-width:900px){
+    .contact-us-form{
+        width: 100%;
+    }
     .contact-us-content{
         padding: 1rem;
         margin: 0 0 2rem 0;
@@ -205,12 +228,16 @@ p{
     .contact-us-section-top{
         flex-direction: column;
     }
-    .contact-us-section-left, .contact-us-section-right{
+    .contact-us-section-left{
         width: 100%;
         text-align: center;
     }
-    .contact-us-form{
+    .contact-us-section-right {
         width: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .contact-us-form{
         margin-bottom: 2rem;
     }
 }

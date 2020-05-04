@@ -1,36 +1,47 @@
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
 }
 p{
     margin: 0;
     padding: 0;
 }
-/*Main AC After Sales*/
+/* Main AC After Sales*/
 .main-ac-as{
     display: flex;
     flex-direction: column;
-    padding: 8rem 0 0 8rem ;
-    height: 500px;
-    background-image: url(../Assets/ac-after.jpg);
+    padding: 4rem 0 2rem 3rem ;
+    height: fit-content;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1583252288/Assets/aftersales_bg_n2egps.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
     margin-bottom: 2rem;
+    position: relative;
+}
+.main-ac-as::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4)
 }
 .main-ac-as > p:first-of-type{
-    font-size: 7rem;
+    font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 2rem;
+    z-index: 3;
 }
 .main-ac-as > p:last-of-type{
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 500;
+    z-index: 3;
 }
 .main-ac-as-layer-1 {
-    font-size: 1.5rem;
-    line-height: 2.8rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
     display: flex;
     justify-content: space-between;
     padding: 0 5rem 2rem 5rem;
@@ -41,10 +52,11 @@ p{
 .main-ac-as-layer-1-right{
     width: 45%;
 }
-.main-ac-as-layer-2{
+.main-ac-as-layer-2 {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    justify-content: center;
     padding: 0 5rem 2rem 5rem;
 }
 .main-ac-as-layer-2-item {
@@ -69,14 +81,17 @@ p{
     bottom: 20px;
     text-align: center;
 }
-.main-ac-as-layer-3{
+.main-ac-as-layer-3 {
     display: flex;
     height: fit-content;
     justify-content: space-between;
-    padding: 3rem 3rem 3rem 4rem;
+    padding: 1rem 3rem 1rem 4rem;
     margin-bottom: 2rem;
     color: white;
-    background-color: #2E4087;
+    background-color: #727272;
+}
+.main-ac-as-layer-3.two{
+    background-color: #D6D6D6;
 }
 .main-ac-as-layer-3-left{
     width: 45%;
@@ -84,25 +99,29 @@ p{
     flex-direction: column;
 }
 .main-ac-as-layer-3-left > p:first-of-type{
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 600;
     margin-bottom: 1rem;
 }
 .main-ac-as-layer-3-left > p:last-of-type {
-    font-size: 1.5rem;
-    line-height: 2.8rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
     font-weight: 400;
     margin-bottom: 2rem;
 }
-.main-ac-as-layer-3-left > button{
+.main-ac-as-layer-3-left > a{
     border: none;
     background-color: white;
     padding: 1.5rem 5rem;
     border-radius: 0.4rem;
     font-size: 1.3rem;
+    text-decoration: none;
+    width: fit-content;
+    color: black;
 }
 .main-ac-as-layer-3-right{
     width: 45%;
+    height: 400px;
 }
 .main-ac-as-layer-3-right > img{
     width: 100%;
@@ -122,27 +141,26 @@ p{
     display: flex;
     flex-direction: column;
     width: 45%;
-    font-size: 1.5rem;
-    line-height: 2.8rem;
+    font-size: 1.2rem;
+    line-height: 2rem;
 }
 .main-ac-as-layer-4-right{
     display: flex;
     flex-direction: column;
     position: relative;
-    top: 5rem;
 }
 .main-ac-as-layer-4-right > p:first-of-type{
     font-weight: 600;
 }
 .main-ac-as-layer-4-left > p:first-of-type{
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: 600;
     margin-bottom: 3rem;
 }
 .main-ac-as-layer-3.two{
     background-color: #9D9D9D;
 }
-@media screen and (max-width:1350px){
+@media screen and (max-width:950px){
     .main-ac-as-layer-1 {
         flex-direction: column;
         text-align: center;
@@ -181,13 +199,10 @@ p{
     .main-ac-as-layer-4-left > p:first-of-type {
         text-align: center;
     }
-}
-@media screen and (max-width:950px){
     .main-ac-as {
         justify-content: center;
         align-items: center;
         padding: 2rem 0 0 0;
-        /* height: fit-content; */
     }
     .main-ac-as > p:first-of-type{
         font-size: 3rem;
@@ -224,4 +239,240 @@ p{
         padding: 0 1rem 2rem 1rem;
     }
 }
-/*Main AC After Sales*/
+/*Main AC After Sales */
+
+/*Main AC After Sales */
+.as-header{
+    min-height: 500px;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1586163592/Assets/Aftersales_Page_Banner-min_wutgic.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.as-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4)
+}
+.as-header > p{
+    font-size: 3rem;
+    font-weight: 600;
+    color: white;
+    z-index: 3;
+}
+.as-options-container{
+    padding: 0rem 4rem;
+    display: flex;
+    margin-bottom: 2rem;
+    justify-content: space-around;
+}
+.as-option {
+    min-width: 300px;
+    width: 500px;
+    height: 350px;
+    margin-bottom: 2rem;
+    display: flex;
+    margin-right: 2rem;
+    margin-left: 2rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.as-option:nth-child(1){
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705369/Assets/as-mobility_zqxq9e.png);
+}
+.as-option:nth-child(2){
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705369/Assets/as-cooling_rqdsxw.png);
+}
+.as-option > a,
+.as-option > p{
+    text-decoration: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+/**After Sales Mobility Modal**/
+.as-mobility-modal{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(25, 39, 65, 0.8);
+    display: none;
+    justify-content: center;
+    padding-top: 3rem;
+}
+.as-mobility-modal-content{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: fit-content;
+    border-radius: 0.3rem;
+    padding: 2rem;
+    position: relative;
+    animation-name: slideInFromTop;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    justify-content: space-between;
+}
+.as-mobility-modal-content > i {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    color: white;
+}
+.as-mobility-modal-content > p:first-of-type{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5rem;
+    color: white;
+}
+.as-mobility-modal-row{
+    display: flex;
+    margin-bottom: 5rem;
+    justify-content: space-around;
+}
+.as-mobility-modal-row > a,
+.as-mobility-modal-row > p{
+    cursor: pointer;
+    text-decoration: none;
+    flex: 1;
+    margin: 0rem 1rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    color: #129347;
+    background-color: white;
+    font-weight: 600;
+    border-radius: 0.8rem;
+}
+/**After Sales Mobility Modal**/
+@media screen and (max-width:900px){
+    .as-header{
+        min-height: 300px;
+    }
+    .as-header > p{
+        text-align: center;
+    }
+    .as-options-container{
+        flex-direction: column;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .as-option{
+        margin: 0 0 1rem 0;
+        width: auto;
+    }
+    .as-mobility-modal-content{
+        width: auto;
+    }
+    .as-mobility-modal-content > i {
+        top: -1rem;
+        right: 1rem;
+    }
+    .as-mobility-modal-row{
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+    .as-mobility-modal-row > a, .as-mobility-modal-row > p {
+        margin: 0rem;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        width: auto;
+        border-radius: 0.4rem;
+    }
+    .as-mobility-modal-content > p:first-of-type {
+        margin-bottom: 1rem;
+    }
+}
+/*Main AC After Sales */
+
+/*Refurbishment Form*/
+.ref-layer-form-container{
+    display: flex;
+    justify-content: center;
+    margin: 0rem 1rem 3rem 1rem;
+}
+.ref-layer-form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem;
+    width: 935px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ref-layer-form > section{
+    display: flex;
+    flex-direction: column;
+}
+.ref-layer-form > section:first-of-type{
+    margin-bottom: 3rem;
+}
+.ref-layer-form > section > p:first-of-type{
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.ref-layer-form-row{
+    justify-content: space-between;
+    display: flex;
+    margin-bottom: 2rem;
+}
+.ref-layer-form-row > input,
+.ref-layer-form > section input{
+    width: 45%;
+    padding: 0.8rem;
+    border: 1px solid gray;
+}
+.ref-layer-form > section > textarea{
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid gray;
+}
+.ref-layer-form > button{
+    width: fit-content;
+    padding: 1rem 3rem;
+    background-color: #129347;
+    border-radius: 0.3rem;
+    border: none;
+    color: white;
+}
+@media screen and (max-width:950px){
+    .ref-layer-form-container{
+        margin: 0rem 0rem 2rem 0rem;
+    }
+    .ref-layer-form {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 1rem;
+        width: 100%;
+        box-shadow: none;
+    }
+    .ref-layer-form-row {
+        flex-direction: column;
+        margin-bottom: 0rem;
+    }
+    .ref-layer-form-row > input, .ref-layer-form > section input {
+        width: auto;
+        margin-bottom: 1rem;
+    }
+}
+/*Refurbishment Form*/

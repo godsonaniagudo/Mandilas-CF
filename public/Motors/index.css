@@ -1,10 +1,13 @@
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
 }
 p{
     margin: 0;
     padding: 0;
+}
+*+p{
+    margin-top: 0 !important;
 }
 
 /* Motors Page */
@@ -18,26 +21,42 @@ p{
 }
 .motors-header{
     display: flex;
-    height: 600px;
+    height: 500px;
+    padding: 5rem 0rem;
     background-color: #129347;
     flex-direction: column;
-    padding: 7rem 8rem;
     justify-content: center;
-    margin-bottom: 3rem;
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1587255841/Assets/Artboard_3_2x_hiidlc.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-position: center;
+}
+.motors-header::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+.motors-header > *{
+    margin-left: 8rem;
+    z-index: 3;
 }
 .motors-header > p:first-of-type{
-    font-size: 9rem;
+    font-size: 3rem;
     font-weight: 600;
     color: white;
     margin-bottom: 1rem;
     position: relative;
-    top: -3rem;
 }
 .motors-header > p:last-of-type{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 400;
     color: white;
-    width: 800px;
+    max-width: 800px;
 }
 .motors-buttons{
     display: flex;
@@ -49,7 +68,7 @@ p{
     border: none;
     border: 1px solid #313131;
     background-color: transparent;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     outline: none;
 }
@@ -61,13 +80,14 @@ p{
     display: flex;
     flex-direction: column;
     background-color: white;
+    padding-top: 2rem;
 }
 .motors-content > p:first-of-type{
     display: flex;
     align-self: center;
 }
 .motors-content-red-text {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     color: red;
     margin-bottom: 2rem;
@@ -92,21 +112,87 @@ p{
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transform: scale(0.8);
+    transition: transform 0.3s linear;
+}
+.motors-nv-item > img:hover{
+    transform: scale(1.1);
+}
+.motors-content-sales{
+    display: flex;
+    margin-bottom: 3rem;
+}
+.motors-content-sales-left{
+    background-color: #B3E6DB;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0rem 2rem 0rem 3rem;
+}
+.motors-content-sales-left > p:nth-child(1){
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.motors-content-sales-left > p:nth-child(2){
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+.motors-content-sales-left > a{
+    font-size: 1rem;
+    width: fit-content;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    border-radius: 0.3rem;
+    color: white;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.motors-content-sales-right{
+    width: 50%;
+    display: flex;
+}
+.motors-content-sales-right > img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+.motors-fleet{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+.motors-fleet > p:nth-child(1){
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.motors-fleet > p:nth-child(2){
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.motors-fleet > a{
+    text-decoration: none;
+    color: white;
+    padding: 1rem 3rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0.3rem;
 }
 .motors-nv-item > p {
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 .motors-content-uv{
     display: flex;
-    justify-content: space-between;
-    margin-left: 5rem;
+    justify-content: space-around;
     margin-bottom: 2rem;
 }
 .motors-content-uv-left{
-    width: 100%;
+    width: 30%;
     position: relative;
-    top: -0.5rem;
 }
 .filter-by{
     display: flex;
@@ -118,63 +204,69 @@ p{
     padding: 2rem 3rem 3rem 3rem;
 }
 .filter-by > p{
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     color: #129347;
     margin-bottom: 2rem;
 }
-.filter-by > select{
+.filter-by > select,
+.filter-by > input{
     padding: 1rem;
     font-size: 0.9rem;
     margin-bottom: 2rem;
 }
+.filter-by > input::placeholder{
+    color: #313131;
+}
 .filter-by > button{
     width: fit-content;
-    padding: 1rem 4rem;
+    padding: 0.8rem 3.5rem;
     display: flex;
     align-self: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: white;
     border: none;
-    border-radius: 0.8rem;
+    border-radius: 0.3rem;
     background-color: #129347;
     cursor: pointer;
 }
 .motors-content-uv-right{
-    /* width: 70%; */
+    width: 65%;
 }
 .motors-content-uv-cars{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
-.motors-uv-item{
+.motors-uv-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    min-width: 28%;
+    max-width: 27%;
     height: 200px;
     position: relative;
-    margin: 0rem 1rem 1rem 1rem;
+    margin: 2rem 1rem 2rem 1rem;
 }
 .motors-uv-item > img{
     width: 100%;
-    height: fit-content;
+    height: 200px;
     object-fit: contain;
     margin-bottom: 0.5rem;
 }
 .motors-uv-item > p:first-of-type{
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 60%;
     text-align: center;
     font-weight: 600;
 }
-.motors-uv-item > p:last-of-type{
+.motors-uv-item > p:last-of-type {
     position: absolute;
-    width: 150px;
-    height: 30px;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.2rem 0.3rem;
     display: flex;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
     background-color: #129347;
     color: white;
     align-self: flex-start;
@@ -182,15 +274,15 @@ p{
     align-items: center;
 }
 .motors-bottom-container{
-    background-image: url(../Assets/main.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705393/Assets/main_jjgwws.png);
 }
 .motors-content-uv-bottom-layer-1{
     display: flex;
-    padding: 2rem 8rem;
+    padding: 2rem 5rem;
     justify-content: space-between;
     height: fit-content;
-    background-color: rgba(128, 128, 128, 0.521);
-    margin: 0rem 4rem 2rem 4rem;
+    background-color: #E2E2E2;
+    margin: 0rem 3rem 3rem 3rem;
 }
 .motors-content-uv-b-left{
     width: 45%;
@@ -198,48 +290,49 @@ p{
     flex-direction: column;
 }
 .motors-content-uv-b-left > p:first-of-type{
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 3rem;
 }
 .motors-content-uv-b-left > p{
-    font-size: 3rem;
+    font-size: 1.2rem;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .motors-content-uv-b-left > img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     margin-bottom: 2rem;
+    display: none;
 }
 .motors-content-uv-b-left > button{
     width: fit-content;
     padding: 1rem 4rem;
     display: flex;
     align-self: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: white;
     border: none;
     border-radius: 0.3rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
     background-color: #313131;
     cursor: pointer;
 }
 .motors-content-uv-b-right{
     display: flex;
     width: 45%;
+    height: 320px;
 }
 .motors-content-uv-b-right > img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.motors-content-uv-bottom-layer-2{
+.motors-content-uv-bottom-layer-2 {
     display: flex;
     justify-content: space-between;
     padding: 2rem 8rem;
-    height: 500px;
+    height: fit-content;
 }
 .motors-content-uv-b-left-layer-2{
     width: 45%;
@@ -247,35 +340,37 @@ p{
     flex-direction: column;
 }
 .motors-content-uv-b-left-layer-2 > p{
-    font-size: 1.8rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
 }
-.motors-content-uv-b-right-layer-2{
-    width: 45%;
-}
-.motors-content-uv-b-right-layer-2 > p:first-of-type{
-    font-size: 3rem;
+.motors-content-uv-b-left-layer-2 > p:first-of-type{
+    font-size: 2rem;
     color: #129347;
     font-weight: 600;
 }
+.motors-content-uv-b-right-layer-2 {
+    width: 45%;
+    position: relative;
+    top: 4.5rem;
+}
 .motors-content-uv-b-right-layer-2 > p{
     margin-bottom: 1.5rem;
-    font-size: 1.8rem;
+    font-size: 1rem;
 }
 .motors-content-uv-b-b-layer-2{
-    width: 700px;
+    max-width: 700px;
     display: flex;
     color: #129347;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     margin: 0 auto;
     text-align: center;
     margin-bottom: 3rem;
 }
-.motors-content-uv-b-card{
-    padding: 5rem 8rem 5rem 8rem;
-    margin: 0rem 5rem 4rem 5rem;
+.motors-content-uv-b-card {
+    padding: 2rem 0rem 2rem 0rem;
+    margin: 0rem 3rem 4rem 3rem;
     border-radius: 0.3rem;
     background-color: #eee;
     height: fit-content;
@@ -284,28 +379,25 @@ p{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .motors-content-uv-b-card > p:first-of-type{
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     text-align: center;
 }
 .motors-content-uv-b-card-row{
     display: flex;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     justify-content: center;
 }
 .motors-content-uv-b-card-item {
     display: flex;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 .motors-content-uv-b-card-item > img{
     width: 30px;
     height: 30px;
     margin-right: 2rem;
     object-fit: contain;
-}
-.motors-content-uv-b-card-item > p {
-    font-size: 1.5rem;
 }
 .motors-content-uv-b-card-item > p > span{
     font-weight: 600;
@@ -317,93 +409,14 @@ p{
     width: 45%;
 }
 
-@media screen and (max-width:1350px){
-    .motors-header {
-        height: 500px;
-        padding: 0rem 3rem;
-        align-items: center;
-    }
-    .motors-header > p:first-of-type {
-        font-size: 5rem;
-    }
-    .motors-header > p:last-of-type {
-        font-size: 2.5rem;
-        width: 100%;
-        text-align: center;
-    }
-    .filter-by {
-        border-radius: 0.3rem;
-        box-shadow: none;
-        padding: 2rem;
-    }
-    .motors-content-uv {
+
+@media screen and (max-width:900px){
+    .motors-header > *{
         margin-left: 0rem;
-        flex-direction: column;
-        padding: 1rem 2rem;
     }
-    .motors-content-uv-left {
-        width: 100%;
-        margin-bottom: 2rem;
-    }
-    .motors-content-uv-right {
-        width: 100%;
-    }
-    .motors-content-uv-cars {
-        justify-content: center;
-    }
-    .motors-uv-item {
-        width: 350px;
-    }
-    .motors-content-uv-bottom-layer-1 {
-        flex-direction: column;
-        padding: 2rem 2rem 3rem 2rem;
-        margin: 0 0 2rem 0;
-    }
-    .motors-content-uv-bottom-layer-2 {
-        padding: 2rem 2rem;
-        height: fit-content
-    }
-    .motors-content-uv-b-left {
-        width: 100%;
-        margin-bottom: 2rem;
-    }
-    .motors-content-uv-b-left > p:first-of-type {
-        align-self: center;
-    }
-    .motors-content-uv-b-left > img{
-        width: 100%;
-        height: 500px;
-    }
-    .motors-content-uv-b-right {
-        display: none;
-    }
-    .motors-content-uv-b-left-layer-2 > p, 
-    .motors-content-uv-b-right-layer-2 > p{
-        font-size: 1.5rem;
-    }
-    .motors-content-uv-b-card-row {
-        display: flex;
-        margin-bottom: 3rem;
-        justify-content: space-around;
-        flex-direction: column;
-    }
-    .motors-content-uv-b-card {
-        padding: 2rem;
-        margin: 0 0 3rem 0;
-        box-shadow: none;
-    }
-    .motors-content-uv-b-card-left, 
-    .motors-content-uv-b-card-right {
-        width: 100%;
-    }
-    .motors-content-uv-b-b-layer-2 {
-        width: 100%;
-    }
-    
-}
-@media screen and (max-width:800px){
     .motors-header {
-        padding: 0rem 0rem;
+        align-items: center;
+        text-align: center;
     }
     .motors-header > p:first-of-type {
         font-size: 3rem;
@@ -412,24 +425,38 @@ p{
         font-size: 2rem;
     }
     .motors-buttons > button{
-        font-size: 1.2rem;
         padding: 1rem 1.5rem;
     }
     .filter-by{
         padding: 1rem;
+        box-shadow: none;
+        border-radius: 0rem;
     }
     .motors-nv-item {
         margin: 0;
     }
+    .motors-content-uv-cars{
+        display: flex;
+        flex-direction: column;
+    }
     .motors-uv-item {
-        width: 90%;
+        max-width: 100%;
         height: fit-content;
-        margin: 0 0 2rem 0;
+        margin: 0.8rem 1.3rem;
     }
     .motors-content-uv {
         margin-left: 0rem;
         flex-direction: column;
         padding: 0;
+    }
+    .motors-content-uv-right{
+        width: auto;
+    }
+    .motors-content-uv-left {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-bottom: 2rem;
     }
     .motors-content-uv-bottom-layer-2 {
         padding: 2rem;
@@ -441,39 +468,65 @@ p{
     }
     .motors-content-uv-b-right-layer-2 {
         width: 100%;
+        top: 0rem;
     }
     .motors-content-uv-b-card-left, 
     .motors-content-uv-b-card-right {
         width: 100%;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
     }
     .motors-content-uv-b-card > p:first-of-type {
         font-size: 2rem;
         margin-bottom: 3rem;
     }
-    .motors-content-uv-b-left > p:first-of-type {
-        font-size: 2.5rem;
-    }
-    .motors-content-uv-b-left-layer-2 > p, 
-    .motors-content-uv-b-right-layer-2 > p {
-        font-size: 1.2rem;
-    }
     .motors-content-uv-b-b-layer-2 {
-        font-size: 1.2rem;
-        padding: 0rem 0rem;
-    }
-    .motors-content-uv-b-left > p{
-        font-size: 1.5rem;
+        padding: 0rem;
     }
     .motors-content-uv-b-card-row{
         margin-bottom: 0.5rem;
+        flex-direction: column;
     }
     .motors-content-uv-b-card {
         padding: 1rem;
         margin: 0 0 1rem 0;
+        box-shadow: none;
     }
-    .motors-content-uv-b-card-item > p {
-        font-size: 1.2rem;
+    .motors-content-uv-bottom-layer-1 {
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+        margin: 0rem;
+        align-items: center;
+    }
+    .motors-content-uv-b-left {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+    }
+    .motors-content-uv-b-right {
+        display: flex;
+        width: 100%;
+        height: 400px;
+    }
+    .motors-content-sales {
+        flex-direction: column;
+    }
+    .motors-content-sales-right{
+        order: 1;
+        width: auto;
+    }
+    .motors-content-sales-right > img{
+        max-height: 400px;
+    }
+    .motors-content-nv{
+        margin-bottom: 2rem;
+    }
+    .motors-content-sales-left {
+        order: 2;
+        width: auto;
+        padding: 2rem 1rem;
+        align-items: center;
+        text-align: center;
     }
     
 }
@@ -481,20 +534,20 @@ p{
 
 /* Motors Detail */
 .motors-detail-header{
-    background-image: url(../Assets/motors-detail-header.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705408/Assets/motors-detail-header_ifvfvh.png);
     background-position: center;
     background-size: cover;
-    height: 800px;
+    height: 500px;
 }
 .motors-detail-content{
     background-color: white;
     display: flex;
     flex-direction: column;
-    padding: 3rem 0rem 2rem 7rem;
-    font-size: 1.2rem;
+    padding: 3rem 3rem 2rem 3rem;
+    font-size: 1rem;
 }
 .motors-detail-content > p:first-of-type{
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 2rem;
 }
@@ -502,10 +555,13 @@ p{
     font-size: 2rem;
     font-weight: 300;
 }
+.m-d-summary-left > p {
+    margin: 0rem 0rem 0.8rem 0rem;
+}
 .motors-content-bold-text{
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1rem !important;
 }
 .m-d-logos{
     display: flex;
@@ -524,7 +580,7 @@ p{
     margin-right: 2rem;
 }
 .m-d-logo > p{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .m-d-summary{
     display: flex;
@@ -534,19 +590,34 @@ p{
 .m-d-summary-left{
     display: flex;
     flex-direction: column;
-    width: 45%;
-    align-self: center;
+    width: 40%;
+    max-width: 500px;
+    justify-content: center;
 }
 .m-d-summary-image{
-    width: 45%;
+    flex-direction: column;
+    width: 60%;
     display: flex;
+    align-items: center;
 }
 .m-d-summary-image > img {
-    width: 450px;
-    height: 250px;
-    object-fit: contain;
-    transform: scale(1.6);
+    max-width: 300px;
+    min-width: 100%;
+    margin-bottom: 1rem;
+    height: 370px;
+    object-fit: cover;
     position: relative;
+}
+.m-d-summary-palette {
+    display: flex;
+    min-width: 100%;
+    justify-content: center;
+}
+.m-d-summary-palette > .palette{
+    height: 100px;
+    max-width: 100px;
+    width: calc(100%/5);
+    margin: 0rem 0.5rem;
 }
 .m-d-description{
     display: flex;
@@ -554,16 +625,18 @@ p{
     margin-bottom: 4rem;
 }
 .m-d-description-left{
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
 }
 .m-d-description-left p{
-    line-height: 1.9rem;
+    line-height: 2rem;
+    text-align: justify;
 }
-.m-d-description-right{
-    width: 45%;
+.m-d-description-right {
+    width: 50%;
     display: flex;
+    justify-content: center;
 }
 .pdf-card{
     display: flex;
@@ -593,14 +666,23 @@ p{
     width: 500px;
     justify-content: space-between;
 }
-.m-d-desc-buttons > button{
+.m-d-desc-buttons > a{
     padding: 1rem 4rem;
     border: none;
     width: fit-content;
-    border: 1px solid #129347;
+    text-decoration: none;
     border-radius: 0.3rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
+}
+.m-d-desc-buttons > a:first-of-type{
+    background-color: #129347;
+    color: white;
+}
+.m-d-desc-buttons > a:last-of-type{
+    background-color: white;
+    color: #129347;
+    border: 1px solid #129347;
 }
 .m-d-desc-buttons > button:first-of-type{
     background-color: #129347;
@@ -617,7 +699,7 @@ p{
     width: 100%;
     margin-bottom: 2rem;
     color: white;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 .m-d-layer-1-left{
@@ -625,7 +707,7 @@ p{
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-image: url(../Assets/m-d-1.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705405/Assets/m-d-1_qp4cyi.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -636,7 +718,7 @@ p{
     justify-content: center;
     align-items: center;
     width: 50%;
-    background-image: url(../Assets/m-d-2.jpg);
+    background-image: url(https://res.cloudinary.com/mandilas/image/upload/v1582705403/Assets/m-d-2_kgx64k.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -682,66 +764,20 @@ p{
 .m-d-tbody > tr:nth-child(even){
     background-color: rgb(220,220,220);
 }
-@media screen and (max-width:1350px){
-    .motors-detail-content {
-        padding: 3rem 2rem 2rem 2rem;
-    }
-    .m-d-logo{
-        width: fit-content;
-    }
-    .m-d-logo > p {
-        font-size: 2rem;
-    }
-    .m-d-logo > img {
-        margin-right: 1rem;
-    }
-    .m-d-summary {
-        flex-direction: column;
-    }
-    .m-d-summary-left {
-        width: 100%;
-        margin-bottom: 2rem;
-        /* align-self: center; */
-    }
-    .m-d-summary-left > p {
-        font-size: 2rem;
-    }
-    .m-d-summary-image{
-        width: 100%;
-    }
-    .m-d-summary-image > img{
-        width: 100%;
-        object-fit: cover;
-        transform: scale(1.0);
-    }
-    .m-d-description{
-        flex-direction: column;
-    }
-    .m-d-description-left, 
-    .m-d-description-right{
-        width: 100%;
-    }
-    .m-d-description-left > p{
-        font-size: 2rem;
-        line-height: normal;
-        margin-bottom: 2rem;
-    }
-    .pdf-card{
-        width: 100%;
-        height: 300px;
-    }
-    .motors-detail-content > p:first-of-type {
-        font-size: 6rem;
-    }
-    .motors-content-bold-text {
-        font-size: 3rem;
-        margin-bottom: 1.6rem;
-    }
-    .m-d-desc-buttons{
-        align-self: center;
-    }
+.motors-warranty {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 12rem 2rem 12rem;
 }
-@media screen and (max-width:800px){
+.motors-warranty > p:first-of-type{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.motors-warranty > p:last-of-type{
+    text-align: justify;
+}
+@media screen and (max-width:900px){
     .motors-detail-layer-1 {
         display: flex;
         flex-direction: column;
@@ -755,42 +791,276 @@ p{
     .motors-detail-header{
         height: 400px;
     }
-    .m-d-layer-1-left, .m-d-layer-1-right{
-        font-size: 1.6rem;
-    }
     .motors-detail-content{
         padding: 1rem 0.5rem;
         text-align: center;
     }
-    .motors-detail-content > p:first-of-type {
-        font-size: 2.5rem;
+    .m-d-summary {
+        flex-direction: column;
+        width: auto;
     }
-    .m-d-logo > p, 
-    .motors-content-bold-text, 
-    .m-d-description-left > p {
-        font-size: 1.5rem;
+    .m-d-summary-left {
+        width: 100%;
+        margin-bottom: 2rem;
+        max-width: none;
     }
     .m-d-summary-left > p {
-        font-size: 1.5rem;
         margin-bottom: 1rem;
+    }
+    .m-d-summary-image{
+        width: auto;
+    }
+    .m-d-summary-image > img{
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        min-width: unset;
+    }
+    .m-d-summary-palette > .palette{
+        height: 50px;
+    }
+    .m-d-description{
+        flex-direction: column;
+    }
+    .m-d-description-left, 
+    .m-d-description-right{
+        width: 100%;
+    }
+    .m-d-description-left{
+        margin-bottom: 2rem;
+    }
+    .m-d-description-right{
+        justify-content: center;
     }
     .motors-detail-table {
         overflow-x: scroll;
         display: flex;
         flex-direction: column;
     }
-    .m-d-logos{
+    .m-d-logos {
         flex-direction: column;
+        align-items: center;
+    }
+    .m-d-logo {
+        margin-right: 0rem;
+        margin-bottom: 0.5rem;
+    }
+    .m-d-logo > img{
+        margin-right: 1.5rem;
     }
     .m-d-desc-buttons{
-        width: 100%;
+        width: auto;
+        justify-content: center;
     }
-    .m-d-desc-buttons > button{
-        padding: 1rem 2rem
+    .m-d-desc-buttons > a{
+        padding: 1rem 1.5rem;
+        margin: 0 0.5rem
+    }
+    .pdf-card{
+        width: auto;
+    }
+    .motors-warranty{
+        line-height: 2rem;
+        margin: 0 1rem 2rem 1rem;
     }
 }
 
 /* Motors Detail */
+
+/**Motors Detail Modal**/
+.motors-detail-modal{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(25, 39, 65, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.motors-detail-modal-content{
+    position: relative;
+    animation-name: slideInFromTop;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    justify-content: space-between;
+}
+#motorsDetailModalCarousel > .carousel-inner > .carousel-item > img{
+    object-fit: cover;
+    width: 800px;
+    height: 500px;
+}
+#motorsDetailModalCarousel > .carousel-control-prev{
+    left: -5rem;
+    width: 10%;
+}
+#motorsDetailModalCarousel > .carousel-control-next{
+    right: -5rem;
+    width: 10%;
+}
+#motorsDetailModalCarousel > .carousel-control-next > span:first-of-type,
+#motorsDetailModalCarousel > .carousel-control-prev > span:first-of-type{
+    width: 60px;
+    height: 60px;
+}
+.motors-detail-modal-content > i{
+    font-size: 3rem;
+    position: absolute;
+    color: white;
+    right: -8rem;
+    top: -6rem;
+}
+@media screen and (max-width:950px){
+    #motorsDetailModalCarousel > .carousel-control-prev{
+        left: 0rem;
+        width: 10%;
+    }
+    #motorsDetailModalCarousel > .carousel-control-next{
+        right: 0rem;
+        width: 10%;
+    }
+    #motorsDetailModalCarousel > .carousel-inner > .carousel-item > img{
+        width: 100%;
+        height: 350px;
+    }
+    .motors-detail-modal-content{
+        margin: 1rem;
+    }
+    .motors-detail-modal-content > i{
+        right: 0rem;
+        top: -9rem;
+    }
+}
+/**Motors Detail Modal**/
+
+/**Used Cars Modal**/
+.used-cars-modal{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(25, 39, 65, 0.8);
+    display: none;
+    justify-content: center;
+    padding-top: 3rem;
+}
+.used-cars-modal-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 90%;
+    border-radius: 0.3rem;
+    padding: 2rem;
+    position: relative;
+    animation-name: slideInFromTop;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    justify-content: space-between;
+    background-color: white;
+    overflow-y: scroll;
+}
+.used-cars-modal-content > i {
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    color: green
+}
+/* .used-cars-modal-content > p {
+    margin: 0;
+    font-size: 1.5rem;
+} */
+.used-cars-modal-content > p:first-of-type{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.used-cars-modal-content > img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+.used-cars-summary,
+.used-cars-contact{
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+.used-cars-summary-text,
+.used-cars-contact-name{
+    margin: 0;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.used-cars-information{
+    color: red;
+}
+.used-cars-contact-name{
+    margin-bottom: 2rem;
+}
+#usedModalPrice{
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 2rem;
+    color: #129347;
+}
+/**Used Cars Modal**/
+
+/**Celebration Modal**/
+.celebration-modal-motors{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.celebration-modal-img{
+    display: flex;
+    position: relative;
+    animation-name: slideInFromTop;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    justify-content: space-between;
+    width: 80%;
+    height: 90%;
+    object-fit: cover;
+}
+.celebration-modal-motors > i{
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    font-size: 3rem;
+    color: white;
+}
+@media screen and (max-width:950px){
+    .celebration-modal-img{
+        display: flex;
+        position: relative;
+        width: 95%;
+        height: 400px;
+        object-fit: cover;
+    }
+    .celebration-modal > i{
+        right: 1rem;
+        top: 1rem;
+    }
+}
+/**Celebration Modal**/
 
 /* *{
     background: #000 !important;
